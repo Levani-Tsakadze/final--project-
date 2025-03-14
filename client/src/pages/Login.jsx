@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // ✅ Fix: Load API URL from env
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,18 +14,23 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {  // ✅ Fix: Use API_BASE_URL
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const data = await response.json();
-    if (response.ok) {
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message);
+
       localStorage.setItem("token", data.token);
-      navigate("/courses");
-    } else {
-      setMessage(data.message);
+      alert("Login successful");
+      navigate("/courses"); // ✅ Fix: Redirect to courses page after login
+
+    } catch (error) {
+      console.error("Login failed:", error);
+      setMessage(error.message);  // ✅ Fix: Show error message
     }
   };
 

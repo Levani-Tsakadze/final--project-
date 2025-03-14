@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // ✅ Fix: Load API URL from env
+
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,7 +10,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/register", {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {  // ✅ Fix: Use API_BASE_URL
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

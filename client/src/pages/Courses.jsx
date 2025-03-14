@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";  // Correct import
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // Ensure it uses the correct API URL
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -20,7 +20,7 @@ const Courses = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/courses");
+      const res = await fetch(`${API_BASE_URL}/courses`); // ✅ FIX: Use API_BASE_URL
       if (!res.ok) throw new Error("Failed to fetch courses");
       const data = await res.json();
       setCourses(data);
@@ -28,7 +28,6 @@ const Courses = () => {
       console.error("Error fetching courses:", error);
     }
   };
-
   const checkLoginStatus = () => {
     const token = localStorage.getItem("token");
 
