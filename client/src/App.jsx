@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Courses from "./pages/Courses";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Courses from "./pages/Courses"
 
 function App() {
   return (
@@ -17,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

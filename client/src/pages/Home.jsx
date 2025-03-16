@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 function Home() {
   return (
@@ -11,12 +11,9 @@ function Home() {
         <Link to="/register" className="bg-green-500 text-white px-6 py-2 rounded">
           Register
         </Link>
-        <Link to="/courses" className="bg-gray-500 text-white px-6 py-2 rounded">
-          Go as Guest
-        </Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

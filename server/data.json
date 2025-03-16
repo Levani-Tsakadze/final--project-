@@ -2,7 +2,13 @@
   "users": [
     {
       "email": "Kirola048@gmail.com",
-      "password": "$2b$10$lNsRbbdERhahzEwoJXSFdOO9lGF8XeVb5ALG87/X1w6b29Zm0b/hS"
+      "password": "$2b$10$lNsRbbdERhahzEwoJXSFdOO9lGF8XeVb5ALG87/X1w6b29Zm0b/hS",
+      "isAdmin": true
+    },
+    {
+      "email": "kirola1@gmail.com",
+      "password": "$2b$10$Sm6bki2CLheK3c4T62Ddku089mK0Z5gTtfPSzOHfolWOROloychJq",
+      "isAdmin": false
     }
   ]
 }

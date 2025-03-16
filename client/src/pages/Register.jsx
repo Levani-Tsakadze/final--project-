@@ -1,28 +1,28 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react"
+import { Link } from "react-router-dom"
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // ✅ Fix: Load API URL from env
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [message, setMessage] = useState("")
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    const response = await fetch(`${API_BASE_URL}/auth/register`, {  // ✅ Fix: Use API_BASE_URL
+    e.preventDefault()
+    const response = await fetch(`${API_BASE_URL}/api/auth/register`, {  
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
-    });
+    })
 
-    const data = await response.json();
+    const data = await response.json()
     if (response.ok) {
-      setMessage("Registration successful! You can now log in.");
+      setMessage("Registration successful! You can now log in.")
     } else {
-      setMessage(data.message);
+      setMessage(data.message)
     }
-  };
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -52,7 +52,7 @@ const Register = () => {
         <Link to="/login" className="text-blue-500">Login here</Link>
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

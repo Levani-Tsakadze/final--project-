@@ -1,12 +1,22 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
+import express from "express"
+import cors from "cors"
+import dotenv from "dotenv"
+import coursesRoutes from "./routes/courses.js"
+import authRoutes from "./routes/auth.js"
 
-dotenv.config();
-const app = express();
+dotenv.config()
 
-app.use(cors({ origin: "http://45.143.108.110:5173", credentials: true }));
-app.use(express.json());
+const app = express()
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0", () => console.log(`🚀 Server running at http://45.143.108.110:${PORT}`));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }))
+app.use(express.json())
+
+app.use("/api/courses", coursesRoutes)
+app.use("/api/auth", authRoutes)
+
+app.get("/", (req, res) => {
+  res.send("API is working!")
+})
+
+const PORT = 3000
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`))
